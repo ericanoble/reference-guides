@@ -344,7 +344,7 @@ The SVG dot pattern overlay in `hero::before` should be copied verbatim — it i
 </body>
 ```
 
-> Note: the existing `cricut-sticker-guide.html` predates the `<main>` / `<section>` requirement and uses `<div>` for sections. **New pages must use proper semantic elements.** When `cricut-sticker-guide.html` is next edited, migrate it to this structure.
+> **All pages use this semantic structure**, including `cricut-sticker-guide.html` (retrofitted 2026-06-26 — see Task 3). New pages must follow it exactly.
 
 ### File Architecture
 
@@ -408,6 +408,8 @@ Every page **must** use correct semantic HTML5 elements:
 | `.trouble-table` | Troubleshooting data table |
 | `.mt8`, `.mt12`, `.mt16` | Spacing utility classes |
 | `.site-nav`, `.nav-home`, `.nav-links`, `.nav-link`, `.nav-link.active` | Site navigation |
+| `.guide-grid`, `.guide-card`, `.guide-card.soon`, `.guide-icon`, `.guide-title`, `.guide-desc`, `.guide-cta` | Home-page guide directory cards (`index.html`) |
+| `.section-intro` | Intro paragraph under a section title (`index.html`) |
 
 ### JavaScript Patterns
 All JavaScript is **vanilla, inline, in a `<script>` tag at the bottom of `<body>`** before `</body>`. No external libraries.
@@ -511,8 +513,10 @@ The troubleshooting table transforms at ≤700px from a 3-column table into stac
 
 ## 6. NEXT STEPS & BACKLOG
 
-### Task 1 — Create `index.html` (Site Home / Guide Directory)
-Build an overarching front page that:
+### Task 1 — Create `index.html` (Site Home / Guide Directory) — ✅ COMPLETE (2026-06-26)
+Built per the spec below. Implementation note: the guide cards use a dedicated `.guide-grid` / `.guide-card` component (same `minmax(260px, 1fr)` sizing and card styling as `.need-card`), and the live Sticker Sheets card is shown alongside clearly-marked, non-linked "Coming soon" cards for the backlog guides.
+
+Original spec — an overarching front page that:
 - Includes the site nav (with no `.active` link, since we are on the home page)
 - Has a hero block with site title and brief description of what the guides cover
 - Displays a **guide card grid** — one card per sub-page, using `.needs-grid` style layout (`minmax(260px, 1fr)`) with:
@@ -536,11 +540,14 @@ When creating a new guide sub-page (e.g. `vinyl-cutting.html`):
 7. Set `const TOTAL = N` in the JS to the actual number of checkboxes on the new page
 8. Update the `<title>` tag to match the new guide
 
-### Task 3 — Retrofit `cricut-sticker-guide.html`
-When next editing `cricut-sticker-guide.html`:
-- Add the `.site-nav` navigation bar
-- Wrap content sections in `<main>` and convert `<div class="[section]">` to `<section class="[section]">`
-- Change `<div class="footer">` to `<footer class="footer">`
+### Task 3 — Retrofit `cricut-sticker-guide.html` — ✅ COMPLETE (2026-06-26)
+`cricut-sticker-guide.html` now matches the semantic structure in section 4:
+- ✅ Added the `.site-nav` navigation bar (with `.nav-link.active` on the Sticker Sheets link)
+- ✅ Wrapped all content sections in `<main>` and converted each `<div class="[section]">` to `<section class="[section]">`
+- ✅ Changed `<div class="footer">` to `<footer class="footer">`
+- ✅ Converted the seven `<div class="section-title">` headings to `<h2 class="section-title">`
+
+> Visual styling, tokens, copy, and JavaScript were left unchanged; all interactivity (accordion, hash deep-linking, checklist progress) was verified intact after the migration.
 
 ### Backlog Ideas (not yet scoped)
 - `vinyl-cutting.html` — HTV and adhesive vinyl guide

@@ -48,6 +48,50 @@
     *, *::before, *::after { transition: none !important; animation: none !important; }
   }
 
+  /* ─── SITE NAV ─── */
+  .site-nav {
+    background: var(--ink);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-home {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .nav-home:hover { color: var(--teal-light); }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+  }
+  .nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+  .nav-link.active {
+    background: var(--teal);
+    color: white;
+  }
+
   /* ─── HERO ─── */
   .hero {
     background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #007580 100%);
@@ -658,6 +702,8 @@
     .hero, .process-section, .needs-section, .steps-section, .video-section,
     .checklist-section, .trouble-section, .flowchart-section { padding: 24px 16px; }
     .footer { padding: 20px 16px; }
+    .site-nav { padding: 8px 16px; }
+    .nav-home { font-size: 13px; }
     .step-body { padding: 14px 14px; }
     .step-header { padding: 12px 14px; gap: 10px; }
     .callout { padding: 12px 14px; }
@@ -675,6 +721,17 @@
 </head>
 <body>
 
+<!-- SITE NAV -->
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="container">
+    <a href="index.html" class="nav-home">🏠 Guides Home</a>
+    <div class="nav-links">
+      <a href="cricut-sticker-guide.html" class="nav-link active">Sticker Sheets</a>
+      <!-- Add further sub-page links here as pages are created -->
+    </div>
+  </div>
+</nav>
+
 <!-- HERO -->
 <div class="hero">
   <div class="container">
@@ -690,11 +747,13 @@
   </div>
 </div>
 
+<main>
+
 <!-- PROCESS MAP -->
-<div class="process-section" id="top">
+<section class="process-section" id="top">
   <div class="container">
     <div class="section-label">Quick Navigation</div>
-    <div class="section-title">Process Map — click any step to jump straight to it</div>
+    <h2 class="section-title">Process Map — click any step to jump straight to it</h2>
     <div class="process-map">
       <a href="#step-calibration" class="pmap-step critical">
         <div class="pmap-num">1</div>
@@ -738,13 +797,13 @@
       </a>
     </div>
   </div>
-</div>
+</section>
 
 <!-- WHAT YOU NEED -->
-<div class="needs-section">
+<section class="needs-section">
   <div class="container">
     <div class="section-label">Equipment &amp; Materials</div>
-    <div class="section-title">What You Need</div>
+    <h2 class="section-title">What You Need</h2>
     <div class="needs-grid">
       <div class="need-card">
         <div class="need-icon">🤖</div>
@@ -812,11 +871,11 @@
       </div>
     </div>
   </div>
-</div>
-<div class="flowchart-section">
+</section>
+<section class="flowchart-section">
   <div class="container">
     <div class="section-label">Visual Overview</div>
-    <div class="section-title">Process Flowchart — click a step to open its instructions</div>
+    <h2 class="section-title">Process Flowchart — click a step to open its instructions</h2>
     <div class="flowchart-wrap">
       <div class="flowchart">
         <a href="#step-calibration" class="fc-node critical-fc">⚙️ Calibrate Machine (One-Time)<div class="fc-node-label">Menu → Settings → Machines → Machine Calibration</div></a>
@@ -841,13 +900,13 @@
       </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- STEPS -->
-<div class="steps-section">
+<section class="steps-section">
   <div class="container">
     <div class="section-label">Step-by-Step Instructions</div>
-    <div class="section-title">Expand each step for full detail</div>
+    <h2 class="section-title">Expand each step for full detail</h2>
 
     <!-- STEP 1: CALIBRATION -->
     <div class="step-group" id="step-calibration">
@@ -1259,13 +1318,13 @@
     </div>
 
   </div><!-- /container -->
-</div><!-- /steps -->
+</section><!-- /steps -->
 
 <!-- VIDEO RESOURCES -->
-<div class="video-section">
+<section class="video-section">
   <div class="container">
     <div class="section-label">Video Resources</div>
-    <div class="section-title">Helpful Tutorial Videos</div>
+    <h2 class="section-title">Helpful Tutorial Videos</h2>
     <p style="font-size:14px;color:var(--ink-soft);margin-bottom:4px;">These hand-picked videos cover the key concepts in this workflow. Open in YouTube in a separate tab.</p>
     <div class="video-grid">
       <a href="https://www.youtube.com/watch?v=_Ye6dcGmKCQ" target="_blank" rel="noopener" class="video-card">
@@ -1310,13 +1369,13 @@
       </a>
     </div>
   </div>
-</div>
+</section>
 
 <!-- INTERACTIVE CHECKLIST -->
-<div class="checklist-section">
+<section class="checklist-section">
   <div class="container">
     <div class="section-label">Interactive Checklist</div>
-    <div class="section-title">Tick off each item as you go — a completion message appears when all done</div>
+    <h2 class="section-title">Tick off each item as you go — a completion message appears when all done</h2>
 
     <div class="progress-bar-wrap">
       <div class="progress-label">
@@ -1427,13 +1486,13 @@
       <p>Every item is checked — your class sticker sheets have been successfully produced. Hand them out and enjoy!</p>
     </div>
   </div>
-</div>
+</section>
 
 <!-- TROUBLESHOOTING -->
-<div class="trouble-section">
+<section class="trouble-section">
   <div class="container">
     <div class="section-label">Troubleshooting</div>
-    <div class="section-title">Common Problems &amp; Fixes</div>
+    <h2 class="section-title">Common Problems &amp; Fixes</h2>
     <table class="trouble-table">
         <thead>
           <tr>
@@ -1507,15 +1566,17 @@
       </div>
     </div>
   </div>
-</div>
+</section>
+
+</main>
 
 <!-- FOOTER -->
-<div class="footer">
+<footer class="footer">
   <div class="container">
     <p>Cricut Maker 3 · Class Sticker Sheet Production Guide · Staff Reference</p>
     <p style="margin-top:6px;">Instructions validated against <a href="https://help.cricut.com" target="_blank" rel="noopener">Cricut Help Center</a> — current as of June 2026. Always verify against the latest Design Space version.</p>
   </div>
-</div>
+</footer>
 
 <script>
   // ─── STEP TOGGLE ───

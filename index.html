@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricut Maker 3 Guides — Classroom Reference Library</title>
+<style>
+  /* ─── TOKENS ─── */
+  :root {
+    --teal:        #00838F;
+    --teal-dark:   #006472;
+    --teal-light:  #E0F4F6;
+    --teal-mid:    #B2E5EA;
+    --green:       #2E7D32;
+    --green-light: #E8F5E9;
+    --amber:       #B45309;
+    --amber-light: #FFF3E0;
+    --red:         #C62828;
+    --red-light:   #FFEBEE;
+    --purple:      #6A1B9A;
+    --purple-light:#F3E5F5;
+    --ink:         #1A2332;
+    --ink-soft:    #3D4F63;
+    --border:      #D0DDE6;
+    --surface:     #F7FAFB;
+    --white:       #FFFFFF;
+    --radius:      12px;
+    --radius-sm:   8px;
+    --shadow:      0 2px 12px rgba(0,131,143,.12);
+    --shadow-md:   0 6px 24px rgba(0,131,143,.16);
+  }
+
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--surface);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { line-height: 1.25; }
+  a { color: var(--teal); }
+  a:hover { color: var(--teal-dark); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+
+  /* ─── SITE NAV ─── */
+  .site-nav {
+    background: var(--ink);
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .site-nav .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .nav-home {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .nav-home:hover { color: var(--teal-light); }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .nav-link {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    transition: background .15s, color .15s;
+  }
+  .nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: white;
+  }
+  .nav-link.active {
+    background: var(--teal);
+    color: white;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #007580 100%);
+    color: white;
+    padding: 48px 32px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .hero p {
+    font-size: 17px;
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+  .hero-chips {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  }
+  .chip {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+  /* ─── SECTION HEADINGS ─── */
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .section-intro {
+    font-size: 15px;
+    color: var(--ink-soft);
+    max-width: 760px;
+    margin-top: -10px;
+    margin-bottom: 4px;
+  }
+
+  /* ─── GUIDE DIRECTORY ─── */
+  .guides-section {
+    background: white;
+    padding: 36px 32px;
+    border-bottom: 2px solid var(--border);
+  }
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 16px;
+  }
+  .guide-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .15s, transform .1s, border-color .15s;
+  }
+  a.guide-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+    border-color: var(--teal);
+  }
+  .guide-icon {
+    width: 56px; height: 56px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+    flex-shrink: 0;
+  }
+  .guide-title { font-size: 18px; font-weight: 700; color: var(--ink); }
+  .guide-desc { font-size: 14px; color: var(--ink-soft); line-height: 1.55; flex: 1; }
+  .guide-cta { font-size: 14px; font-weight: 700; color: var(--teal-dark); margin-top: 2px; }
+  a.guide-card:hover .guide-cta { text-decoration: underline; }
+
+  /* Coming-soon variant — clearly marked, not a link */
+  .guide-card.soon { border-style: dashed; }
+  .guide-card.soon .guide-icon { filter: grayscale(0.4); }
+  .guide-cta.soon-label {
+    color: var(--ink-soft);
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    font-size: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 3px 10px;
+  }
+
+  /* ─── HOW TO USE ─── */
+  .howto-section {
+    padding: 36px 32px;
+    background: var(--surface);
+  }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin: 16px 0;
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .callout-body { flex: 1; }
+  .callout-body strong { display: block; margin-bottom: 3px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  .callout.warn  { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .callout.warn  .callout-icon { color: var(--amber); }
+  .callout.warn  .callout-body strong { color: var(--amber); }
+  .callout.danger{ background: var(--red-light); border-left: 4px solid var(--red); }
+  .callout.danger .callout-icon { color: var(--red); }
+  .callout.danger .callout-body strong { color: var(--red); }
+  .callout.tip   { background: var(--teal-light); border-left: 4px solid var(--teal); }
+  .callout.tip   .callout-icon { color: var(--teal-dark); }
+  .callout.tip   .callout-body strong { color: var(--teal-dark); }
+  .callout.info  { background: var(--purple-light); border-left: 4px solid var(--purple); }
+  .callout.info  .callout-icon { color: var(--purple); }
+  .callout.info  .callout-body strong { color: var(--purple); }
+  .callout.success{ background: var(--green-light); border-left: 4px solid var(--green); }
+  .callout.success .callout-icon { color: var(--green); }
+  .callout.success .callout-body strong { color: var(--green); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.75);
+    padding: 28px 32px;
+    text-align: center;
+    font-size: 13px;
+  }
+  .footer a { color: var(--teal-mid); }
+
+  /* ─── UTILITY ─── */
+  .mt8 { margin-top: 8px; }
+  .mt12 { margin-top: 12px; }
+  .mt16 { margin-top: 16px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero, .guides-section, .howto-section { padding: 24px 16px; }
+    .footer { padding: 20px 16px; }
+    .callout { padding: 12px 14px; }
+    .guide-card { padding: 18px 16px; }
+    .site-nav { padding: 8px 16px; }
+    .nav-home { font-size: 13px; }
+    /* Prevent any long unbreakable strings from overflowing */
+    * { word-break: break-word; overflow-wrap: break-word; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SITE NAV -->
+<nav class="site-nav" aria-label="Site navigation">
+  <div class="container">
+    <a href="index.html" class="nav-home">🏠 Guides Home</a>
+    <div class="nav-links">
+      <a href="cricut-sticker-guide.html" class="nav-link">Sticker Sheets</a>
+      <!-- Add further sub-page links here as pages are created -->
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-badge">Classroom Reference Library</div>
+    <h1>✂️ Cricut Maker 3 Guides</h1>
+    <p>Step-by-step production guides for the classroom — process maps, expandable steps, interactive checklists, and troubleshooting, all in one place.</p>
+    <div class="hero-chips">
+      <span class="chip">🤖 Cricut Maker 3</span>
+      <span class="chip">💻 Design Space</span>
+      <span class="chip">📄 Printable Media</span>
+      <span class="chip">🏫 Classroom-Ready</span>
+    </div>
+  </div>
+</div>
+
+<main>
+
+  <!-- GUIDE DIRECTORY -->
+  <section class="guides-section">
+    <div class="container">
+      <div class="section-label">Guide Library</div>
+      <h2 class="section-title">Choose a guide</h2>
+      <p class="section-intro">Each guide walks through a single Cricut Maker 3 process from start to finish. Open one to follow it on screen at the machine.</p>
+      <div class="guide-grid">
+
+        <!-- LIVE GUIDE -->
+        <a class="guide-card" href="cricut-sticker-guide.html">
+          <div class="guide-icon">🖨️</div>
+          <div class="guide-title">Sticker Sheets</div>
+          <div class="guide-desc">Print Then Cut sticker sheets — calibration, kiss cut, rectangle die-cut, and individual sticker cards for a whole class.</div>
+          <span class="guide-cta">Open Guide →</span>
+        </a>
+
+        <!-- PLANNED GUIDES (backlog — not yet built) -->
+        <div class="guide-card soon">
+          <div class="guide-icon">🎨</div>
+          <div class="guide-title">Vinyl Cutting</div>
+          <div class="guide-desc">HTV and adhesive vinyl — mirroring, weeding, transfer tape, and applying to garments or surfaces.</div>
+          <span class="guide-cta soon-label">Coming soon</span>
+        </div>
+
+        <div class="guide-card soon">
+          <div class="guide-icon">💌</div>
+          <div class="guide-title">Card Making</div>
+          <div class="guide-desc">Score-and-fold cards — scoring lines, cut paths, and layering inserts for greeting cards.</div>
+          <span class="guide-cta soon-label">Coming soon</span>
+        </div>
+
+        <div class="guide-card soon">
+          <div class="guide-icon">🧵</div>
+          <div class="guide-title">Iron-On Appliqué</div>
+          <div class="guide-desc">Fabric appliqué — cut iron-on backed fabric, weed, position, and heat-press onto textiles.</div>
+          <span class="guide-cta soon-label">Coming soon</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW TO USE -->
+  <section class="howto-section">
+    <div class="container">
+      <div class="section-label">Getting Started</div>
+      <h2 class="section-title">How to use these guides</h2>
+      <p class="section-intro">Every guide is built the same way, so once you know one you know them all. Open a guide on the classroom laptop and work through it beside the machine.</p>
+
+      <div class="callout tip mt16">
+        <div class="callout-icon">💡</div>
+        <div class="callout-body">
+          <strong>Jump in with the process map</strong>
+          Each guide opens with a clickable process map and flowchart. Click any step to jump straight to it, or follow the guide top to bottom the first time through.
+        </div>
+      </div>
+
+      <div class="callout info mt8">
+        <div class="callout-icon">ℹ️</div>
+        <div class="callout-body">
+          <strong>Expand each step for detail</strong>
+          Steps stay collapsed so the guide is easy to skim. Click a step header to reveal its full sub-steps, callouts, and diagrams — only one step opens at a time to keep you focused.
+        </div>
+      </div>
+
+      <div class="callout success mt8">
+        <div class="callout-icon">✅</div>
+        <div class="callout-body">
+          <strong>Check off as you go</strong>
+          Each guide ends with an interactive checklist and a progress bar. Tick items as you complete them — the job is ready when everything is checked.
+        </div>
+      </div>
+
+      <div class="callout warn mt8">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <strong>Stuck on something?</strong>
+          Every guide has a troubleshooting table near the bottom that pairs common problems with their likely cause and a fix. Check there before stopping a job.
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <p>Cricut Maker 3 Guides · Classroom Reference Library</p>
+    <p style="margin-top:6px;"><a href="cricut-sticker-guide.html">Open the Sticker Sheets guide →</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
