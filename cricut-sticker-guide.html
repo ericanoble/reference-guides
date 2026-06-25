@@ -1,0 +1,1579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cricut Maker 3 — Class Sticker Sheet Guide</title>
+<style>
+  /* ─── TOKENS ─── */
+  :root {
+    --teal:        #00838F;
+    --teal-dark:   #006472;
+    --teal-light:  #E0F4F6;
+    --teal-mid:    #B2E5EA;
+    --green:       #2E7D32;
+    --green-light: #E8F5E9;
+    --amber:       #B45309;
+    --amber-light: #FFF3E0;
+    --red:         #C62828;
+    --red-light:   #FFEBEE;
+    --purple:      #6A1B9A;
+    --purple-light:#F3E5F5;
+    --ink:         #1A2332;
+    --ink-soft:    #3D4F63;
+    --border:      #D0DDE6;
+    --surface:     #F7FAFB;
+    --white:       #FFFFFF;
+    --radius:      12px;
+    --radius-sm:   8px;
+    --shadow:      0 2px 12px rgba(0,131,143,.12);
+    --shadow-md:   0 6px 24px rgba(0,131,143,.16);
+  }
+
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--surface);
+    overflow-x: hidden;
+  }
+  h1,h2,h3,h4 { line-height: 1.25; }
+  a { color: var(--teal); }
+  a:hover { color: var(--teal-dark); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 60%, #007580 100%);
+    color: white;
+    padding: 48px 32px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 5vw, 42px);
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -0.02em;
+  }
+  .hero p {
+    font-size: 17px;
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+  .hero-chips {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  }
+  .chip {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* ─── LAYOUT ─── */
+  .container { max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+  /* ─── PROCESS MAP ─── */
+  .process-section {
+    background: white;
+    padding: 36px 32px;
+    border-bottom: 2px solid var(--border);
+  }
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--teal-dark);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .process-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 8px;
+  }
+  .pmap-step {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    background: var(--teal-light);
+    border: 2px solid var(--teal-mid);
+    border-radius: var(--radius-sm);
+    padding: 12px 8px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--teal-dark);
+    font-size: 13px;
+    font-weight: 600;
+    transition: background .15s, border-color .15s, transform .1s;
+  }
+  .pmap-step:hover {
+    background: var(--teal-mid);
+    border-color: var(--teal);
+    transform: translateY(-2px);
+    color: var(--teal-dark);
+  }
+  .pmap-step .pmap-num {
+    width: 28px; height: 28px;
+    background: var(--teal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .pmap-step.critical {
+    background: var(--red-light);
+    border-color: #FFCDD2;
+    color: var(--red);
+  }
+  .pmap-step.critical .pmap-num { background: var(--red); }
+  .pmap-step.critical:hover { background: #FFCDD2; border-color: var(--red); color: var(--red); }
+
+  /* ─── WHAT YOU NEED ─── */
+  .needs-section {
+    background: white;
+    padding: 36px 32px;
+    border-bottom: 2px solid var(--border);
+  }
+  .needs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .need-card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 14px;
+    text-align: center;
+    display: flex; flex-direction: column; align-items: center; gap: 10px;
+  }
+  .need-icon {
+    width: 52px; height: 52px;
+    background: var(--teal-light);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px;
+  }
+  .need-name { font-weight: 700; font-size: 14px; color: var(--ink); }
+  .need-detail { font-size: 12px; color: var(--ink-soft); }
+
+  /* ─── CALLOUT BOXES ─── */
+  .callout {
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    margin: 16px 0;
+    display: flex; gap: 12px; align-items: flex-start;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .callout-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .callout-body { flex: 1; }
+  .callout-body strong { display: block; margin-bottom: 3px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; }
+  .callout.warn  { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .callout.warn  .callout-icon { color: var(--amber); }
+  .callout.warn  .callout-body strong { color: var(--amber); }
+  .callout.danger{ background: var(--red-light); border-left: 4px solid var(--red); }
+  .callout.danger .callout-icon { color: var(--red); }
+  .callout.danger .callout-body strong { color: var(--red); }
+  .callout.tip   { background: var(--teal-light); border-left: 4px solid var(--teal); }
+  .callout.tip   .callout-icon { color: var(--teal-dark); }
+  .callout.tip   .callout-body strong { color: var(--teal-dark); }
+  .callout.info  { background: var(--purple-light); border-left: 4px solid var(--purple); }
+  .callout.info  .callout-icon { color: var(--purple); }
+  .callout.info  .callout-body strong { color: var(--purple); }
+  .callout.success{ background: var(--green-light); border-left: 4px solid var(--green); }
+  .callout.success .callout-icon { color: var(--green); }
+  .callout.success .callout-body strong { color: var(--green); }
+
+  /* ─── STEPS ─── */
+  .steps-section {
+    padding: 36px 32px;
+  }
+  .step-group { margin-bottom: 10px; }
+  .step-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: white;
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: border-color .15s, box-shadow .15s;
+    user-select: none;
+  }
+  .step-header:hover {
+    border-color: var(--teal);
+    box-shadow: var(--shadow);
+  }
+  .step-header.open {
+    border-color: var(--teal);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background: var(--teal-light);
+  }
+  .step-num {
+    width: 38px; height: 38px;
+    background: var(--teal);
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .step-header.critical-step .step-num { background: var(--red); }
+  .step-header.critical-step { border-color: #FFCDD2; }
+  .step-header.critical-step:hover { border-color: var(--red); }
+  .step-header.critical-step.open { background: var(--red-light); border-color: var(--red); }
+  .step-header.optional-step .step-num { background: var(--purple); }
+  .step-header.optional-step { border-color: #E1BEE7; }
+  .step-header.optional-step:hover { border-color: var(--purple); }
+  .step-header.optional-step.open { background: var(--purple-light); border-color: var(--purple); }
+
+  .step-meta { flex: 1; min-width: 0; }
+  .step-title { font-size: 17px; font-weight: 700; color: var(--ink); }
+  .step-subtitle { font-size: 13px; color: var(--ink-soft); margin-top: 2px; }
+  .step-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 5px; }
+  .tag {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+  }
+  .tag.one-time { background: #FFF9C4; color: #5C4A00; }
+  .tag.required { background: var(--red-light); color: var(--red); }
+  .tag.optional  { background: var(--purple-light); color: var(--purple); }
+  .tag.critical  { background: var(--red-light); color: var(--red); }
+
+  .step-toggle {
+    font-size: 22px;
+    color: var(--ink-soft);
+    transition: transform .2s;
+    flex-shrink: 0;
+  }
+  .step-header.open .step-toggle { transform: rotate(180deg); }
+
+  .step-body {
+    display: none;
+    background: white;
+    border: 2px solid var(--teal);
+    border-top: none;
+    border-bottom-left-radius: var(--radius);
+    border-bottom-right-radius: var(--radius);
+    padding: 20px 24px;
+    animation: slideDown .2s ease;
+  }
+  .step-header.critical-step.open + .step-body { border-color: var(--red); }
+  .step-header.optional-step.open + .step-body { border-color: var(--purple); }
+  .step-body.open { display: block; }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .sub-steps { list-style: none; counter-reset: sub; }
+  .sub-steps li {
+    counter-increment: sub;
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+  }
+  .sub-steps li:last-child { border-bottom: none; }
+  .sub-steps li::before {
+    content: counter(sub, lower-alpha) ".";
+    font-weight: 700;
+    color: var(--teal);
+    min-width: 20px;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  /* ─── CONCEPT BOX (Flatten vs Attach) ─── */
+  .concept-box {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin: 16px 0;
+  }
+  .concept-box-header {
+    background: var(--teal);
+    color: white;
+    padding: 10px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .concept-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .concept-table th {
+    background: var(--teal-light);
+    color: var(--teal-dark);
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .concept-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .concept-table tr:last-child td { border-bottom: none; }
+  .concept-table td:first-child { font-weight: 700; color: var(--teal-dark); width: 25%; }
+  .use-chip {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .use-chip.yes { background: var(--green-light); color: var(--green); }
+  .use-chip.no  { background: var(--red-light); color: var(--red); }
+
+  /* ─── LAYER DIAGRAM ─── */
+  .layer-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 16px 0;
+    max-width: 420px;
+  }
+  .layer-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 16px;
+    border-left: 4px solid transparent;
+    border-radius: 6px;
+    margin-bottom: 3px;
+    font-size: 14px;
+  }
+  .layer-row.print-layer  { background: #E3F2FD; border-left-color: #1565C0; }
+  .layer-row.kiss-layer   { background: #F3E5F5; border-left-color: #6A1B9A; }
+  .layer-row.rect-layer   { background: #E8F5E9; border-left-color: #2E7D32; }
+  .layer-icon { font-size: 18px; flex-shrink: 0; }
+  .layer-info { flex: 1; }
+  .layer-name { font-weight: 700; font-size: 13px; }
+  .layer-desc { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+  .layer-op {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+  }
+  .op-print  { background: #BBDEFB; color: #0D47A1; }
+  .op-kiss   { background: #E1BEE7; color: #6A1B9A; }
+  .op-die    { background: #C8E6C9; color: #1B5E20; }
+  .layer-arrow { text-align: center; font-size: 13px; color: var(--border); padding: 0 0 3px 20px; }
+
+  /* ─── FLOWCHART ─── */
+  .flowchart-section {
+    background: white;
+    padding: 36px 32px;
+    border-top: 2px solid var(--border);
+    border-bottom: 2px solid var(--border);
+  }
+  .flowchart-wrap { overflow-x: auto; padding-bottom: 8px; }
+  .flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-width: 280px;
+  }
+  .fc-node {
+    width: 260px;
+    text-align: center;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: transform .1s;
+  }
+  .fc-node:hover { transform: scale(1.02); }
+  .fc-node.setup    { background: var(--teal-light); border: 2px solid var(--teal-mid); color: var(--teal-dark); }
+  .fc-node.design   { background: #EDE7F6; border: 2px solid #D1C4E9; color: var(--purple); }
+  .fc-node.critical-fc { background: var(--red-light); border: 2px solid #FFCDD2; color: var(--red); }
+  .fc-node.action   { background: var(--green-light); border: 2px solid #A5D6A7; color: var(--green); }
+  .fc-node.optional-fc { background: #FFF8E1; border: 2px dashed #FFD54F; color: var(--amber); }
+  .fc-arrow {
+    width: 2px; height: 22px;
+    background: var(--border);
+    position: relative;
+  }
+  .fc-arrow::after {
+    content: '▼';
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--border);
+  }
+  .fc-node-label {
+    font-size: 12px;
+    font-weight: 500;
+    opacity: 0.75;
+    margin-top: 2px;
+  }
+
+  /* ─── VIDEO SECTION ─── */
+  .video-section {
+    padding: 36px 32px;
+    background: white;
+    border-bottom: 2px solid var(--border);
+  }
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .video-card {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow .15s, transform .1s;
+    display: flex; flex-direction: column;
+  }
+  .video-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .video-thumb {
+    background: linear-gradient(135deg, #1A237E 0%, #283593 100%);
+    height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .play-btn {
+    width: 50px; height: 50px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    color: var(--red);
+    transition: transform .15s;
+  }
+  .video-card:hover .play-btn { transform: scale(1.1); }
+  .video-info { padding: 14px; flex: 1; }
+  .video-tag {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--red);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 4px;
+  }
+  .video-title { font-size: 14px; font-weight: 700; color: var(--ink); line-height: 1.35; }
+  .video-channel { font-size: 12px; color: var(--ink-soft); margin-top: 4px; }
+
+  /* ─── CHECKLIST ─── */
+  .checklist-section {
+    padding: 36px 32px;
+    background: var(--surface);
+  }
+  .checklist-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 16px; }
+  .checklist-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .checklist-card-header {
+    padding: 12px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .checklist-card-header.print-hdr  { background: var(--teal-light); color: var(--teal-dark); }
+  .checklist-card-header.cut-hdr    { background: var(--green-light); color: var(--green); }
+  .checklist-card-header.finish-hdr { background: var(--amber-light); color: var(--amber); }
+  .checklist-items { padding: 8px 0; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background .1s;
+  }
+  .check-item:hover { background: var(--surface); }
+  .check-item input[type=checkbox] {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--teal);
+    cursor: pointer;
+  }
+  .check-label { font-size: 14px; user-select: none; }
+  .check-item input:checked + .check-label {
+    text-decoration: line-through;
+    color: var(--ink-soft);
+  }
+
+  /* ─── COMPLETION ─── */
+  #completion-msg {
+    display: none;
+    margin: 24px 0;
+    background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+    color: white;
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    animation: popIn .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  #completion-msg.show { display: block; }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+  #completion-msg h3 { font-size: 24px; margin-bottom: 6px; }
+  #completion-msg p  { opacity: 0.9; font-size: 15px; }
+
+  /* ─── TROUBLESHOOTING ─── */
+  .trouble-section {
+    padding: 36px 32px;
+    background: white;
+    border-top: 2px solid var(--border);
+  }
+  .trouble-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+  .trouble-table th {
+    background: var(--ink);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+  }
+  .trouble-table tr:nth-child(even) td { background: var(--surface); }
+  .trouble-table td { padding: 11px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .trouble-table td:first-child { color: var(--red); font-weight: 600; }
+  .trouble-table td:nth-child(2) { color: var(--amber); }
+  .trouble-table td:nth-child(3) { color: var(--green); }
+
+  /* Mobile: stack table rows as labelled cards */
+  @media (max-width: 700px) {
+    .trouble-table thead { display: none; }
+    .trouble-table, .trouble-table tbody, .trouble-table tr, .trouble-table td { display: block; width: 100%; }
+    .trouble-table tr {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .trouble-table tr:nth-child(even) td { background: transparent; }
+    .trouble-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+    }
+    .trouble-table td:last-child { border-bottom: none; }
+    .trouble-table td::before {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      opacity: 0.65;
+    }
+    .trouble-table td:nth-child(1) { background: var(--red-light); }
+    .trouble-table td:nth-child(1)::before { content: '❌ Problem'; color: var(--red); }
+    .trouble-table td:nth-child(2) { background: var(--amber-light); }
+    .trouble-table td:nth-child(2)::before { content: '⚠️ Likely Cause'; color: var(--amber); }
+    .trouble-table td:nth-child(3) { background: var(--green-light); }
+    .trouble-table td:nth-child(3)::before { content: '✅ Fix'; color: var(--green); }
+  }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.75);
+    padding: 28px 32px;
+    text-align: center;
+    font-size: 13px;
+  }
+  .footer a { color: var(--teal-mid); }
+
+  /* ─── UTILITY ─── */
+  .mt8 { margin-top: 8px; }
+  .mt12 { margin-top: 12px; }
+  .mt16 { margin-top: 16px; }
+  .progress-bar-wrap { margin-top: 20px; }
+  .progress-label { font-size: 13px; color: var(--ink-soft); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--teal), #00ACC1); border-radius: 4px; transition: width .3s ease; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .hero, .process-section, .needs-section, .steps-section, .video-section,
+    .checklist-section, .trouble-section, .flowchart-section { padding: 24px 16px; }
+    .footer { padding: 20px 16px; }
+    .step-body { padding: 14px 14px; }
+    .step-header { padding: 12px 14px; gap: 10px; }
+    .callout { padding: 12px 14px; }
+    .concept-box-header { padding: 8px 12px; }
+    .concept-table th, .concept-table td { padding: 8px 10px; }
+    .pmap-step { font-size: 12px; }
+    .step-title { font-size: 15px; }
+    .trouble-table { font-size: 12px; }
+    .trouble-table th, .trouble-table td { padding: 8px 10px; }
+    .sub-steps li { gap: 8px; font-size: 14px; }
+    /* Prevent any long unbreakable strings from overflowing */
+    * { word-break: break-word; overflow-wrap: break-word; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container">
+    <div class="hero-badge">Staff Reference Guide</div>
+    <h1>🖨️ Cricut Maker 3<br>Class Sticker Sheet Production</h1>
+    <p>Print Then Cut · Kiss Cut · Rectangle Die-Cut · Individual Sticker Cards</p>
+    <div class="hero-chips">
+      <span class="chip">🖨️ Inkjet Printer</span>
+      <span class="chip">✂️ Cricut Maker 3</span>
+      <span class="chip">📄 Cricut Printable Sticker Paper</span>
+      <span class="chip">💻 Design Space (Desktop)</span>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS MAP -->
+<div class="process-section" id="top">
+  <div class="container">
+    <div class="section-label">Quick Navigation</div>
+    <div class="section-title">Process Map — click any step to jump straight to it</div>
+    <div class="process-map">
+      <a href="#step-calibration" class="pmap-step critical">
+        <div class="pmap-num">1</div>
+        Calibration<br><small>(One-time)</small>
+      </a>
+      <a href="#step-upload" class="pmap-step">
+        <div class="pmap-num">2</div>
+        Upload PNGs
+      </a>
+      <a href="#step-place" class="pmap-step">
+        <div class="pmap-num">3</div>
+        Place on Canvas
+      </a>
+      <a href="#step-offset" class="pmap-step">
+        <div class="pmap-num">4</div>
+        Add Offset<br><small>(Optional)</small>
+      </a>
+      <a href="#step-rectangle" class="pmap-step">
+        <div class="pmap-num">5</div>
+        Add Rectangle Cut
+      </a>
+      <a href="#step-attach" class="pmap-step critical">
+        <div class="pmap-num">6</div>
+        Attach Groups ⚠️
+      </a>
+      <a href="#step-check" class="pmap-step">
+        <div class="pmap-num">7</div>
+        Final Check
+      </a>
+      <a href="#step-print" class="pmap-step">
+        <div class="pmap-num">8</div>
+        Print Sheet
+      </a>
+      <a href="#step-cut" class="pmap-step">
+        <div class="pmap-num">9</div>
+        Load &amp; Cut
+      </a>
+      <a href="#step-finish" class="pmap-step">
+        <div class="pmap-num">10</div>
+        Finish &amp; Distribute
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT YOU NEED -->
+<div class="needs-section">
+  <div class="container">
+    <div class="section-label">Equipment &amp; Materials</div>
+    <div class="section-title">What You Need</div>
+    <div class="needs-grid">
+      <div class="need-card">
+        <div class="need-icon">🤖</div>
+        <div class="need-name">Cricut Maker 3</div>
+        <div class="need-detail">Powered on &amp; connected to laptop via Bluetooth or USB</div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">💻</div>
+        <div class="need-name">Design Space</div>
+        <div class="need-detail">Microsoft Surface · <a href="https://design.cricut.com/login" target="_blank" rel="noopener">Cricut Design Space</a></div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">🔪</div>
+        <div class="need-name">Premium Fine Point Blade</div>
+        <div class="need-detail">Installed in clamp B · Sharp &amp; undamaged</div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">📋</div>
+        <div class="need-name">Cutting Mat (12" × 12")</div>
+        <div class="need-detail"><strong>LightGrip (blue) — ideal.</strong> StandardGrip (green) works but see mat note below.</div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">📄</div>
+        <div class="need-name">Cricut Printable Sticker Paper</div>
+        <div class="need-detail">White — inkjet only. Printable side is blank; liner has grid &amp; Cricut logo.</div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">🖨️</div>
+        <div class="need-name">Inkjet Printer</div>
+        <div class="need-detail">Colour · Load sticker paper one sheet at a time</div>
+      </div>
+      <div class="need-card">
+        <div class="need-icon">🖼️</div>
+        <div class="need-name">Student PNG Files</div>
+        <div class="need-detail">Transparent background preferred · One file per student</div>
+      </div>
+    </div>
+
+    <div class="callout warn mt16">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>Inkjet Printers Only</strong>
+        Cricut Printable Sticker Paper must only be used with inkjet printers. A laser printer generates heat that will damage both the sticker paper and your printer.
+      </div>
+    </div>
+
+    <div class="callout tip mt8">
+      <div class="callout-icon">📐</div>
+      <div class="callout-body">
+        <strong>About Sheet Size</strong>
+        Cricut Printable Sticker Paper is 8.5" × 11" (US Letter) or A4. Design Space manages the printable area automatically — if any sticker exceeds the cuttable boundary, a red ⚠ icon appears in the Layers panel and you'll be prompted to resize. No manual calculation needed.
+      </div>
+    </div>
+    <div class="callout warn mt8">
+      <div class="callout-icon">📋</div>
+      <div class="callout-body">
+        <strong>About the Cutting Mat — Important</strong>
+        For this project you need a 12" × 12" mat. Here's what to use:
+        <br><br>
+        <strong>✅ Best: LightGrip mat (blue)</strong> — specifically recommended for sticker paper and lightweight materials. Holds the sheet securely during cutting and releases it cleanly without tearing.
+        <br><br>
+        <strong>⚠️ If you only have a StandardGrip mat (green):</strong> It will cut correctly, but the stronger adhesive risks tearing or curling the sticker sheet when you remove it — especially if the mat is new. Two ways to reduce this risk: (1) before loading the sticker sheet, press a clean piece of scrap paper onto the mat and peel it off several times to reduce the tackiness; (2) after cutting, always flip the mat face-down onto a flat surface and peel the mat away from the sheet rather than lifting the sheet off the mat. A well-used green mat that has lost some stickiness is usually fine.
+        <br><br>
+        <strong>❌ Do not use:</strong> StrongGrip (purple) or FabricGrip (pink) mats — both will damage the sticker paper.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="flowchart-section">
+  <div class="container">
+    <div class="section-label">Visual Overview</div>
+    <div class="section-title">Process Flowchart — click a step to open its instructions</div>
+    <div class="flowchart-wrap">
+      <div class="flowchart">
+        <a href="#step-calibration" class="fc-node critical-fc">⚙️ Calibrate Machine (One-Time)<div class="fc-node-label">Menu → Settings → Machines → Machine Calibration</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-upload" class="fc-node design">📁 Upload Student PNGs<div class="fc-node-label">Upload → Save as Print Then Cut Image</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-place" class="fc-node design">🖼️ Place &amp; Resize on Canvas<div class="fc-node-label">Drag, arrange freely, ensure spacing</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-offset" class="fc-node optional-fc">✨ Add White Offset Border (Optional)<div class="fc-node-label">Select image → Offset → Set thickness → Apply</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-rectangle" class="fc-node design">🟩 Add Rectangle Cut Layer<div class="fc-node-label">Shapes → Rectangle → resize to card boundary</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-attach" class="fc-node critical-fc">📎 ATTACH Each Sticker Group<div class="fc-node-label">Select PNG + offset + rectangle → Attach — CRITICAL</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-check" class="fc-node setup">✅ Final Canvas Check<div class="fc-node-label">All inside boundary · No overlaps · All attached</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-print" class="fc-node action">🖨️ Make It → Print<div class="fc-node-label">Send to inkjet · High quality · Sticker paper loaded</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-cut" class="fc-node action">✂️ Load Mat &amp; Cut<div class="fc-node-label">Mat → Maker 3 → press Start button</div></a>
+        <div class="fc-arrow"></div>
+        <a href="#step-finish" class="fc-node action">🎉 Separate Cards &amp; Distribute<div class="fc-node-label">Remove from mat · Separate cards · Hand to students</div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STEPS -->
+<div class="steps-section">
+  <div class="container">
+    <div class="section-label">Step-by-Step Instructions</div>
+    <div class="section-title">Expand each step for full detail</div>
+
+    <!-- STEP 1: CALIBRATION -->
+    <div class="step-group" id="step-calibration">
+      <button class="step-header critical-step" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">1</div>
+        <div class="step-meta">
+          <div class="step-title">Print Then Cut Calibration</div>
+          <div class="step-subtitle">Complete before first use — re-run if cuts drift off target</div>
+          <div class="step-tags">
+            <span class="tag one-time">One-Time Setup</span>
+            <span class="tag required">Required</span>
+          </div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <div class="callout danger">
+          <div class="callout-icon">🚨</div>
+          <div class="callout-body">
+            <strong>Do This First — Every Time After a New Machine Setup</strong>
+            Without a completed calibration, the Cricut sensor cannot correctly locate registration marks and cuts will be misaligned. Design Space may also block you from proceeding until calibration is done.
+          </div>
+        </div>
+        <p><strong>Path in Design Space (Desktop):</strong></p>
+        <div class="callout tip mt8">
+          <div class="callout-icon">🗺️</div>
+          <div class="callout-body">
+            <strong>Navigation</strong>
+            Menu (☰ top-left) → Settings → Machines → select your Cricut Maker 3 → Machine Calibration → Start → select <em>Print Then Cut</em>
+          </div>
+        </div>
+        <ol class="sub-steps mt12">
+          <li>Open Design Space and ensure your Cricut Maker 3 is connected.</li>
+          <li>Open the ☰ Menu → <strong>Settings</strong> → <strong>Machines</strong> → select your machine → <strong>Machine Calibration</strong> → <strong>Start</strong> → choose <strong>Print Then Cut</strong>.</li>
+          <li>Select your printer from the dropdown and click <strong>Print</strong>. Design Space will send a calibration sheet to your inkjet printer — print it on plain paper.</li>
+          <li>Place the printed calibration sheet on a cutting mat (either LightGrip or StandardGrip is fine — this is plain paper), aligned to the <strong>top-left corner</strong>.</li>
+          <li>Load the mat and press the flashing <strong>Go</strong> button. The machine will scan the sheet and make test cuts. <strong>Do not unload the mat.</strong></li>
+          <li>Examine the small square cut in the centre. Design Space asks: <em>"Does the cut touch the printed line all the way around?"</em>
+            <ul style="margin-top:6px;padding-left:20px;font-size:14px;">
+              <li><strong>Yes →</strong> Proceed to fine calibration (the machine will make additional cuts along the top and right edge).</li>
+              <li><strong>No →</strong> Design Space runs a basic calibration — tell it which numbered/lettered lines align best, then reprint a fresh sheet and repeat.</li>
+            </ul>
+          </li>
+          <li>For fine calibration: examine the grid of cuts along the top and right side of the page. Tell Design Space which numbered line (top) and lettered line (right side) sits closest to the printed line.</li>
+          <li>The machine will make a final confirmation cut around the large outer rectangle. If it aligns, confirm <strong>Yes</strong>. Calibration complete! If not, run through the process once more — a second attempt almost always resolves it.</li>
+        </ol>
+        <div class="callout success mt12">
+          <div class="callout-icon">✅</div>
+          <div class="callout-body">
+            <strong>Success Check</strong>
+            The final large rectangle cut should track exactly along the printed black line all the way around. Once confirmed, you won't need to re-calibrate unless cuts start drifting again.
+          </div>
+        </div>
+        <p class="mt12" style="font-size:13px;">📖 Full official guide: <a href="https://help.cricut.com/hc/en-us/articles/360009424974-Calibrating-your-machine-for-Print-Then-Cut" target="_blank" rel="noopener">Calibrating your machine for Print Then Cut — Cricut Help Center ↗</a></p>
+      </div>
+    </div>
+
+    <!-- STEP 2: UPLOAD -->
+    <div class="step-group" id="step-upload">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">2</div>
+        <div class="step-meta">
+          <div class="step-title">Upload Student PNG Files</div>
+          <div class="step-subtitle">Import each student's design as a Print Then Cut image</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <ol class="sub-steps">
+          <li>In Design Space, click <strong>Upload</strong> (left toolbar).</li>
+          <li>Click <strong>Upload Image</strong> → Browse and select the student's PNG file.</li>
+          <li>If prompted to select an image type, choose <strong>Complex</strong> (best for detailed PNG artwork). Note: newer versions of Design Space may skip this screen and proceed directly to the background editing step — if you don't see it, just continue.</li>
+          <li>On the next screen, check the background:
+            <ul style="margin-top:6px;padding-left:20px;font-size:14px;">
+              <li>If the background is transparent (checkerboard pattern): proceed directly.</li>
+              <li>If there's an unwanted background colour: use the background removal tools on this screen to clean it up before saving.</li>
+            </ul>
+          </li>
+          <li>Click <strong>Save as Print Then Cut Image</strong> — this is essential. Saving as a cut-only file would strip all colour.</li>
+          <li>The image appears in your Uploads library. Click it to select it, then click <strong>Add to Canvas</strong> (sometimes labelled <strong>Insert Images</strong> depending on your Design Space version) to place it on the canvas.</li>
+          <li>Repeat for every student's PNG.</li>
+        </ol>
+        <div class="callout tip mt12">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>Check the Layers Panel</strong>
+            After inserting, each image should appear in the Layers panel with a printer icon (🖨) and show <em>Print Then Cut</em> as the operation. If it shows just a scissors icon, it's a cut-only file — delete it and re-upload, saving as Print Then Cut.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: PLACE -->
+    <div class="step-group" id="step-place">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">3</div>
+        <div class="step-meta">
+          <div class="step-title">Place &amp; Resize Stickers on Canvas</div>
+          <div class="step-subtitle">Arrange freely — no fixed grid needed</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <ol class="sub-steps">
+          <li>Each uploaded image is automatically placed on the canvas when inserted. Drag it by clicking and dragging directly on the canvas to position it freely. No grid or fixed layout is required.</li>
+          <li>Resize each sticker individually to suit the design — stickers can all be different sizes. Use the corner handles and keep the <strong>lock ratio</strong> enabled to avoid distortion.</li>
+          <li>Ensure there is clear <strong>visible spacing</strong> between all stickers. They must not overlap or touch, or the cut paths will interfere with each other.</li>
+          <li>If the red ⚠ icon appears in the Layers panel next to a sticker, the overall layout is too large. Click the icon and choose <strong>Auto-Resize</strong>, or reduce individual sticker sizes until the warning clears.</li>
+        </ol>
+        <div class="callout tip mt12">
+          <div class="callout-icon">📐</div>
+          <div class="callout-body">
+            <strong>Layout Tip</strong>
+            Design Space manages the printable boundary automatically. If a red exclamation mark appears beside a layer, it means stickers are exceeding the cut area — simply reduce sizes or remove one sticker until the warning disappears.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 4: OFFSET (OPTIONAL) -->
+    <div class="step-group" id="step-offset">
+      <button class="step-header optional-step" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">4</div>
+        <div class="step-meta">
+          <div class="step-title">Add White Offset Border</div>
+          <div class="step-subtitle">Gives each sticker a clean white halo — decide per sticker</div>
+          <div class="step-tags">
+            <span class="tag optional">Optional</span>
+          </div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <div class="callout info">
+          <div class="callout-icon">ℹ️</div>
+          <div class="callout-body">
+            <strong>What the Offset Does</strong>
+            The Offset tool generates a slightly enlarged shape around the sticker image. When the kiss cut follows this offset shape rather than the image edge, the sticker has a visible white border — giving it a polished, "sticker-sheet" look when peeled.
+          </div>
+        </div>
+        <ol class="sub-steps mt12">
+          <li>Select the student's PNG on the canvas.</li>
+          <li>Click <strong>Offset</strong> in the top Edit toolbar.</li>
+          <li>Drag the slider or type a value to set border thickness (0.05"–0.1" is typical for a clean look).</li>
+          <li>Choose <strong>rounded</strong> corners for a smooth outline. Click <strong>Apply</strong>.</li>
+          <li>The offset shape appears as a separate layer in the Layers panel. Set its fill colour to <strong>White</strong> — this ensures the white border prints visibly on the sticker paper and that the kiss cut follows the offset outline rather than the inner image edge.</li>
+          <li>Repeat individually for each sticker that needs a border.</li>
+        </ol>
+        <div class="callout warn mt12">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>Don't Offset All Stickers Together</strong>
+            Apply the Offset to one sticker at a time. Selecting all stickers before offsetting merges them, making it impossible to move individual stickers around the canvas afterwards.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 5: RECTANGLE -->
+    <div class="step-group" id="step-rectangle">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">5</div>
+        <div class="step-meta">
+          <div class="step-title">Add Rectangle Cut Layer</div>
+          <div class="step-subtitle">Creates the outer die-cut boundary for each individual sticker card</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <p style="font-size:14px;margin-bottom:12px;">Each sticker needs three linked layers. Here's how they work:</p>
+
+        <div class="layer-diagram">
+          <div class="layer-row print-layer">
+            <div class="layer-icon">🖼️</div>
+            <div class="layer-info">
+              <div class="layer-name">Print Layer</div>
+              <div class="layer-desc">The student's PNG — printed by your inkjet</div>
+            </div>
+            <span class="layer-op op-print">Prints</span>
+          </div>
+          <div class="layer-arrow">↕</div>
+          <div class="layer-row kiss-layer">
+            <div class="layer-icon">✨</div>
+            <div class="layer-info">
+              <div class="layer-name">Offset / Kiss Cut</div>
+              <div class="layer-desc">White offset shape — cut outline for sticker peel</div>
+            </div>
+            <span class="layer-op op-kiss">Kiss Cuts</span>
+          </div>
+          <div class="layer-arrow">↕</div>
+          <div class="layer-row rect-layer">
+            <div class="layer-icon">🟩</div>
+            <div class="layer-info">
+              <div class="layer-name">Rectangle Layer</div>
+              <div class="layer-desc">Outer card boundary — full die-cut through backing</div>
+            </div>
+            <span class="layer-op op-die">Die Cuts</span>
+          </div>
+        </div>
+
+        <ol class="sub-steps mt12">
+          <li>Click <strong>Shapes</strong> (left toolbar) → select <strong>Rectangle</strong>. A rectangle appears on canvas.</li>
+          <li>Resize and position it to form the outer boundary of the sticker card for one student. The rectangle should surround the sticker image with a comfortable margin.</li>
+          <li>In the Layers panel, set the rectangle's operation to <strong>Basic Cut</strong> (not Print Then Cut). Its fill colour doesn't matter — it won't print, only cut.</li>
+          <li>In the Layers panel, drag the rectangle entry to the <strong>bottom of the layer list</strong> (below the PNG and offset entries). In Design Space, lower in the list = further back on the canvas. The correct order from top to bottom of the list is: PNG (top) → Offset → Rectangle (bottom).</li>
+          <li>Repeat: add a fresh rectangle for every student's sticker.</li>
+        </ol>
+        <div class="callout tip mt12">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>Rectangle size is fully flexible</strong>
+            Each student's card can be a different size. The rectangle is the final product boundary — make it as large or small as looks good for that student's design.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 6: ATTACH — CRITICAL -->
+    <div class="step-group" id="step-attach">
+      <button class="step-header critical-step" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">6</div>
+        <div class="step-meta">
+          <div class="step-title">Attach Each Sticker Group ⚠️</div>
+          <div class="step-subtitle">The single most important step — must be done for every sticker</div>
+          <div class="step-tags">
+            <span class="tag critical">Critical — Do Not Skip</span>
+          </div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <div class="callout danger">
+          <div class="callout-icon">🚨</div>
+          <div class="callout-body">
+            <strong>If You Skip This Step — The Whole Sheet Will Fail</strong>
+            Without Attach, Design Space repositions each layer independently on the mat. The print and the cut paths will be completely out of alignment. Every sticker group must be Attached before printing.
+          </div>
+        </div>
+
+        <ol class="sub-steps mt12">
+          <li>Click on the <strong>PNG image</strong> for one student's sticker on the canvas.</li>
+          <li>Hold <strong>Shift</strong> and also click the <strong>offset shape</strong> (if used) and the <strong>rectangle</strong> for that same sticker.</li>
+          <li>In the Layers panel on the right, scroll down and click <strong>Attach</strong>.</li>
+          <li>The three layers now move and cut as one locked group. In the Layers panel, they'll appear indented under an Attach group header.</li>
+          <li>Repeat for every student's sticker group on the canvas — one Attach action per student.</li>
+        </ol>
+
+        <!-- Flatten vs Attach -->
+        <div class="concept-box mt12">
+          <div class="concept-box-header">📚 Flatten vs. Attach — Know the Difference</div>
+          <table class="concept-table">
+            <thead>
+              <tr><th>Tool</th><th>What it does</th><th>Use in this workflow?</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Attach</td>
+                <td>Locks the <em>position</em> of multiple layers relative to each other on the mat, while keeping each layer's cut/print operation separate. The PNG still prints; the rectangle still cuts; the offset still kiss-cuts — all precisely aligned.</td>
+                <td><span class="use-chip yes">✔ Yes — use this</span></td>
+              </tr>
+              <tr>
+                <td>Flatten</td>
+                <td>Merges all selected layers into a <em>single printable layer</em>. All distinct cut operations are lost — you end up with one image that prints and cuts around its own outer edge. Useful for simple single-sticker sheets, but wrong here because it removes the separate rectangle die-cut instruction.</td>
+                <td><span class="use-chip no">✘ Not for this workflow</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt8" style="font-size:13px;">📖 Official reference: <a href="https://help.cricut.com/hc/en-us/articles/360009387274-How-to-Print-Then-Cut-in-Design-Space" target="_blank" rel="noopener">How to Print Then Cut in Design Space — Cricut Help Center ↗</a></p>
+      </div>
+    </div>
+
+    <!-- STEP 7: CHECK -->
+    <div class="step-group" id="step-check">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">7</div>
+        <div class="step-meta">
+          <div class="step-title">Final Canvas Check</div>
+          <div class="step-subtitle">Confirm everything is in order before printing</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <p style="font-size:14px;margin-bottom:12px;">Run through this checklist before clicking Make:</p>
+        <ol class="sub-steps">
+          <li>All stickers are positioned <strong>within the canvas boundary</strong> — no part of any sticker or rectangle extends outside the printable area. No red ⚠ warnings in the Layers panel.</li>
+          <li>There is <strong>adequate spacing</strong> between all stickers (and their rectangles). They must not overlap or touch.</li>
+          <li>In the Layers panel, every sticker group shows as an <strong>Attach group</strong> containing its PNG, offset (if used), and rectangle.</li>
+          <li>No stray rectangles, offsets, or shapes are floating alone on the canvas.</li>
+          <li>Double-check that each PNG layer is labelled as <strong>Print Then Cut</strong> in the Layers panel (printer icon 🖨).</li>
+        </ol>
+        <div class="callout success mt12">
+          <div class="callout-icon">✅</div>
+          <div class="callout-body">
+            <strong>You're ready when</strong>
+            All layers are attached, all stickers are inside the canvas, no warnings appear, and all PNGs show as Print Then Cut. Proceed to Make.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 8: PRINT -->
+    <div class="step-group" id="step-print">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">8</div>
+        <div class="step-meta">
+          <div class="step-title">Print the Sticker Sheet</div>
+          <div class="step-subtitle">Send to inkjet printer via Design Space</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <ol class="sub-steps">
+          <li>Click <strong>Make</strong> (top-right of canvas).</li>
+          <li>On the Prepare screen, verify the mat preview looks correct — all stickers visible, properly spaced.</li>
+          <li>Click <strong>Continue</strong>.</li>
+          <li>On the Make screen, click <strong>Send to Printer</strong>.</li>
+          <li>In the Print Setup dialog:
+            <ul style="margin-top:6px;padding-left:20px;font-size:14px;">
+              <li><strong>Add Bleed:</strong> If your sticker has a white offset border, toggle this <strong>Off</strong> — the border provides the margin and bleed is not needed. If any sticker's design runs right to the cut edge (no offset applied), leave this <strong>On</strong> to prevent a white sliver appearing at the cut line.</li>
+              <li>Check <strong>Use System Dialog</strong> — this opens your printer's own settings window.</li>
+            </ul>
+          </li>
+          <li>In the system print dialog, set quality to <strong>High / Best</strong> and paper type to <strong>Matte Photo Paper</strong> or closest equivalent. This gives the sharpest, most vibrant print.</li>
+          <li>Load the Cricut Printable Sticker Paper into the printer — <strong>check your printer's manual or settings for which way to orient the printable side</strong>, as this varies by printer model and tray. If unsure, print a test page on plain paper first to confirm orientation. Load only one sheet at a time.</li>
+          <li>Click <strong>Print</strong>. Do not touch the printed sheet until the ink is fully dry (30–60 seconds).</li>
+          <li>You will see a thick <strong>black registration box</strong> printed around the sheet — this is correct and essential. The Cricut uses these marks to locate where to cut.</li>
+        </ol>
+        <div class="callout warn mt12">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-body">
+            <strong>Do Not Touch the Registration Border</strong>
+            The black border around the sheet smudges easily when fresh. Handle by the edges only after printing, and allow it to fully dry before placing on the mat.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 9: CUT -->
+    <div class="step-group" id="step-cut">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">9</div>
+        <div class="step-meta">
+          <div class="step-title">Load Mat &amp; Cut</div>
+          <div class="step-subtitle">Two-pass automatic cut — kiss cut then rectangle die-cut</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <ol class="sub-steps">
+          <li>Place the printed sticker sheet on your cutting mat, aligned precisely to the <strong>top-left corner</strong>. Smooth it down firmly with your hand or a brayer — no bubbles or lifting edges.
+            <ul style="margin-top:6px;padding-left:20px;font-size:14px;">
+              <li><strong>LightGrip (blue) mat:</strong> Ideal for sticker paper — use as normal.</li>
+              <li><strong>StandardGrip (green) mat:</strong> Will work, but if the mat is new or very sticky, first reduce its tack by pressing and peeling a scrap piece of paper on it a few times before loading the sticker sheet.</li>
+            </ul>
+          </li>
+          <li>Back in Design Space, on the Make screen, select the material: click <strong>Browse All Materials</strong> and search for <strong>Printable Sticker Paper, White</strong>. Select the correct version:
+            <ul style="margin-top:6px;padding-left:20px;font-size:14px;">
+              <li><strong>Gray Liner Printing</strong> — older Cricut sticker paper (thick, with gray grid on liner)</li>
+              <li><strong>Green Liner Printing</strong> — newer Cricut sticker paper (thinner liner, less likely to jam)</li>
+            </ul>
+          </li>
+          <li>Load the mat into the Cricut Maker 3: align it with the left guide rails and press the <strong>Load/Unload</strong> button (double arrows icon) until the mat is gripped.</li>
+          <li>Press the flashing <strong>Start</strong> button. The machine will:
+            <ul style="margin-top:6px;padding-left:20px;font-size:14px;">
+              <li><strong>First (automatic):</strong> Scan the registration marks in the corners of the printed sheet to locate the design precisely — no cutting yet.</li>
+              <li><strong>Cut pass 1:</strong> Kiss-cut around each sticker (or offset shape) — cuts through the sticker layer only, leaving the backing intact.</li>
+              <li><strong>Cut pass 2:</strong> Die-cut along each rectangle — cuts fully through both sticker paper and backing to create separate cards.</li>
+            </ul>
+          </li>
+          <li>When the machine stops and the <strong>Load/Unload</strong> button flashes, press it to unload the mat.</li>
+          <li><strong>Before removing the sheet from the mat</strong>, check one sticker: lift a corner to confirm the kiss cut didn't go through the backing. If the rectangle die-cut didn't fully separate the backing on any card, press the <strong>Start</strong> button again for one more pass without unloading.</li>
+        </ol>
+        <div class="callout tip mt12">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>About Rectangle Cut Depth</strong>
+            With Cricut's own Printable Sticker Paper and the correct material setting, a single pass through the machine should cut cleanly through the backing. If the rectangle edges don't fully separate, run the mat through a second time by pressing the <strong>Start</strong> button again before unloading — this is preferable to stacking rectangle layers in the design.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 10: FINISH -->
+    <div class="step-group" id="step-finish">
+      <button class="step-header" onclick="toggleStep(this)" aria-expanded="false">
+        <div class="step-num">10</div>
+        <div class="step-meta">
+          <div class="step-title">Finish &amp; Distribute to Students</div>
+          <div class="step-subtitle">Remove, separate, and hand out individual sticker cards</div>
+        </div>
+        <div class="step-toggle">▾</div>
+      </button>
+      <div class="step-body">
+        <ol class="sub-steps">
+          <li>Place the mat face-down on a clean, flat surface and gently <strong>peel the mat away from the sticker sheet</strong> (rather than peeling the sheet off the mat). This prevents the sheet from curling.</li>
+          <li>The sticker cards will now be fully separated along the rectangle cuts. Gently push them apart.</li>
+          <li>Each student receives one card with their printed design. The kiss-cut sticker inside can be peeled away from the card backing cleanly.</li>
+          <li>Distribute cards to students. Demonstrate how to peel the sticker from the backing if needed.</li>
+        </ol>
+        <div class="callout tip mt12">
+          <div class="callout-icon">💡</div>
+          <div class="callout-body">
+            <strong>Peeling Tip</strong>
+            If stickers are tricky to peel at the edge, students can use a fingernail at the corner of the kiss-cut shape to lift the sticker away from the backing liner. The adhesive is permanent, so remind students to place stickers carefully.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+</div><!-- /steps -->
+
+<!-- VIDEO RESOURCES -->
+<div class="video-section">
+  <div class="container">
+    <div class="section-label">Video Resources</div>
+    <div class="section-title">Helpful Tutorial Videos</div>
+    <p style="font-size:14px;color:var(--ink-soft);margin-bottom:4px;">These hand-picked videos cover the key concepts in this workflow. Open in YouTube in a separate tab.</p>
+    <div class="video-grid">
+      <a href="https://www.youtube.com/watch?v=_Ye6dcGmKCQ" target="_blank" rel="noopener" class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag">▶ YouTube</div>
+          <div class="video-title">Print Then Cut Cricut Tutorial — No More Failed Projects</div>
+          <div class="video-channel">Step-by-step beginner walkthrough · 2026</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=EUYLrcjr7Q0" target="_blank" rel="noopener" class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag">▶ YouTube</div>
+          <div class="video-title">2026 Updated Cricut Print Then Cut Tutorial — Perfect Stickers Every Time</div>
+          <div class="video-channel">MGL+ · Most current method · May 2026</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=Pl3w-JoNviI" target="_blank" rel="noopener" class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag">▶ YouTube</div>
+          <div class="video-title">Complete Intro to Cricut's Print Then Cut</div>
+          <div class="video-channel">High-level overview of all key concepts · Aug 2025</div>
+        </div>
+      </a>
+      <a href="https://www.youtube.com/watch?v=1wFf_YJp4EU" target="_blank" rel="noopener" class="video-card">
+        <div class="video-thumb">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="video-info">
+          <div class="video-tag">▶ YouTube</div>
+          <div class="video-title">How To Make STICKERS With Cricut Print Then Cut — the RIGHT Way!</div>
+          <div class="video-channel">Covers Offset tool &amp; common mistakes to avoid · Sep 2023</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- INTERACTIVE CHECKLIST -->
+<div class="checklist-section">
+  <div class="container">
+    <div class="section-label">Interactive Checklist</div>
+    <div class="section-title">Tick off each item as you go — a completion message appears when all done</div>
+
+    <div class="progress-bar-wrap">
+      <div class="progress-label">
+        <span>Progress</span>
+        <span id="progress-text">0 / 18 complete</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    </div>
+
+    <div class="checklist-groups mt16">
+      <!-- Before Printing -->
+      <div class="checklist-card">
+        <div class="checklist-card-header print-hdr">🖨️ Before Printing</div>
+        <div class="checklist-items">
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Print Then Cut calibration completed</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">All student PNGs uploaded as Print Then Cut images</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">All stickers placed on canvas with visible spacing</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Offsets applied to stickers that need them (or confirmed not needed for each sticker)</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Rectangle cut layer added for every sticker</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Every sticker group Attached (PNG + offset + rectangle)</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">No stickers or shapes outside the printable boundary</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">No red ⚠ warnings in the Layers panel</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Sticker paper loaded into inkjet printer (one sheet)</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Printer set to High / Best quality</span>
+          </label>
+          <label class="check-item">
+            <input type="checkbox" onchange="updateProgress()">
+            <span class="check-label">Sheet printed with registration border visible</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Before Cutting + After -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="checklist-card">
+          <div class="checklist-card-header cut-hdr">✂️ Before Cutting</div>
+          <div class="checklist-items">
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Ink dry — sheet handled only by edges</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Sheet aligned top-left on mat (LightGrip ideal; see mat note if using StandardGrip)</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Correct material selected: Printable Sticker Paper, White</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Premium Fine Point Blade installed in clamp B</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Mat loaded into machine — Start button flashing</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="checklist-card">
+          <div class="checklist-card-header finish-hdr">🎉 After Cutting</div>
+          <div class="checklist-items">
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Kiss cuts and die cuts verified before unloading</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" onchange="updateProgress()">
+              <span class="check-label">Individual sticker cards separated and distributed</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="completion-msg">
+      <h3>🎉 All Done! Sticker cards ready to go!</h3>
+      <p>Every item is checked — your class sticker sheets have been successfully produced. Hand them out and enjoy!</p>
+    </div>
+  </div>
+</div>
+
+<!-- TROUBLESHOOTING -->
+<div class="trouble-section">
+  <div class="container">
+    <div class="section-label">Troubleshooting</div>
+    <div class="section-title">Common Problems &amp; Fixes</div>
+    <table class="trouble-table">
+        <thead>
+          <tr>
+            <th>❌ Problem</th>
+            <th>⚠️ Likely Cause</th>
+            <th>✅ Fix</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Cuts are misaligned from the printed design</td>
+            <td>Attach not used on sticker group — layers shift on mat</td>
+            <td>Rebuild each sticker group: select PNG + offset + rectangle → Attach. Reprint and cut.</td>
+          </tr>
+          <tr>
+            <td>Machine cuts in the completely wrong place</td>
+            <td>Print Then Cut calibration not completed or outdated</td>
+            <td>Re-run calibration: Menu → Settings → Machines → Machine Calibration → Print Then Cut.</td>
+          </tr>
+          <tr>
+            <td>Sheet won't print or triggers an error in Design Space</td>
+            <td>Objects outside the printable boundary; red ⚠ in Layers</td>
+            <td>Click the red ⚠ icon → choose Auto-Resize, or manually move/resize stickers until warnings clear.</td>
+          </tr>
+          <tr>
+            <td>Kiss cut goes all the way through the backing</td>
+            <td>Wrong material setting — using full-cut setting instead of sticker paper</td>
+            <td>Select material: <em>Printable Sticker Paper, White</em> (correct version for your liner). Try <em>Less Pressure</em> if still too deep.</td>
+          </tr>
+          <tr>
+            <td>Rectangle die-cut doesn't go fully through the backing</td>
+            <td>Blade slightly dull or insufficient pressure for backing thickness</td>
+            <td>Press the Start button again without unloading to run a second pass. If persistent, check blade sharpness and confirm the correct material setting is selected.</td>
+          </tr>
+          <tr>
+            <td>Sticker edges or offset border look wrong / incomplete</td>
+            <td>Offset applied inconsistently or with a very small value</td>
+            <td>Re-apply Offset per sticker individually; use 0.05"–0.1" and set fill to White. Reprint.</td>
+          </tr>
+          <tr>
+            <td>Material tears or rips during cutting</td>
+            <td>Incorrect material setting, damaged blade, or sheet not flat on mat</td>
+            <td>Confirm <em>Printable Sticker Paper, White</em> is selected. Replace blade if worn. Ensure sheet is fully flat with no lifted edges before loading.</td>
+          </tr>
+          <tr>
+            <td>Letters / elements of a PNG are each cut out separately</td>
+            <td>PNG was saved as a cut-only file — Design Space treats each colour region as a separate cut path instead of printing the whole image</td>
+            <td>Delete the layer, re-upload the PNG, and on the final save screen choose <em>Print Then Cut Image</em> (not Cut Image). This preserves all colours as a single printable layer that cuts around the outer edge only.</td>
+          </tr>
+          <tr>
+            <td>"No printer found" message in Design Space</td>
+            <td>Unfamiliar printer devices in Windows settings</td>
+            <td>Go to Windows Settings → Bluetooth &amp; Devices → Printers &amp; Scanners → remove any unrecognised printer entries. Return to Design Space and try again.</td>
+          </tr>
+          <tr>
+            <td>Sticker paper jams in the printer</td>
+            <td>Printing from the wrong tray, or loading multiple sheets</td>
+            <td>Remove all paper from the tray, load only one sheet of sticker paper at a time. Use the bypass/manual tray if available. Set printer to thick/heavyweight paper type.</td>
+          </tr>
+        </tbody>
+      </table>
+
+    <div class="callout tip mt16">
+      <div class="callout-icon">📖</div>
+      <div class="callout-body">
+        <strong>Official Help Resources</strong>
+        <a href="https://help.cricut.com/hc/en-us/articles/360009555133-Printable-Sticker-Paper" target="_blank" rel="noopener">Cricut Printable Sticker Paper guide ↗</a> &nbsp;·&nbsp;
+        <a href="https://help.cricut.com/hc/en-us/articles/360009424974-Calibrating-your-machine-for-Print-Then-Cut" target="_blank" rel="noopener">Print Then Cut Calibration ↗</a> &nbsp;·&nbsp;
+        <a href="https://help.cricut.com/hc/en-us/articles/360009387274-How-to-Print-Then-Cut-in-Design-Space" target="_blank" rel="noopener">How to Print Then Cut ↗</a> &nbsp;·&nbsp;
+        <a href="https://help.cricut.com/hc/en-us/articles/19366738622359-How-to-use-Create-Sticker-in-Design-Space" target="_blank" rel="noopener">Flatten vs. Attach / Create Sticker ↗</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="container">
+    <p>Cricut Maker 3 · Class Sticker Sheet Production Guide · Staff Reference</p>
+    <p style="margin-top:6px;">Instructions validated against <a href="https://help.cricut.com" target="_blank" rel="noopener">Cricut Help Center</a> — current as of June 2026. Always verify against the latest Design Space version.</p>
+  </div>
+</div>
+
+<script>
+  // ─── STEP TOGGLE ───
+  function toggleStep(header) {
+    const wasOpen = header.classList.contains('open');
+    // Close all open steps
+    document.querySelectorAll('.step-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.setAttribute('aria-expanded', 'false');
+      const body = h.nextElementSibling;
+      if (body) body.classList.remove('open');
+    });
+    // Open clicked step if it wasn't already open
+    if (!wasOpen) {
+      header.classList.add('open');
+      header.setAttribute('aria-expanded', 'true');
+      const body = header.nextElementSibling;
+      if (body) body.classList.add('open');
+      // Smooth scroll to step
+      setTimeout(() => {
+        header.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 50);
+    }
+  }
+
+  // ─── PROGRESS / CHECKLIST ───
+  const TOTAL = 18;
+  function updateProgress() {
+    const checked = document.querySelectorAll('.check-item input[type=checkbox]:checked').length;
+    const pct = Math.round((checked / TOTAL) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = checked + ' / ' + TOTAL + ' complete';
+    const msg = document.getElementById('completion-msg');
+    if (checked === TOTAL) {
+      msg.classList.add('show');
+      msg.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } else {
+      msg.classList.remove('show');
+    }
+  }
+
+  // ─── AUTO-OPEN STEP FROM HASH ───
+  function openStepFromHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const target = document.querySelector(hash);
+    if (!target) return;
+    const header = target.querySelector('.step-header');
+    if (header && !header.classList.contains('open')) {
+      toggleStep(header);
+    }
+  }
+  window.addEventListener('hashchange', openStepFromHash);
+  window.addEventListener('DOMContentLoaded', () => {
+    openStepFromHash();
+    updateProgress();
+  });
+</script>
+
+</body>
+</html>
