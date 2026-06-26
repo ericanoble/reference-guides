@@ -556,3 +556,8 @@ When creating a new guide sub-page (e.g. `vinyl-cutting.html`):
 - 'applique.html' - fabric iron-on appliqué workflow
 - Print-optimised `@media print` stylesheet for each guide
 - Breadcrumb trail component for deep-linked steps
+
+## 7. NON-NEGOTIABLE CORE RESTRICTIONS
+- **CRITICAL:** Do not read, evaluate, reference, or modify the section in `README.md` titled `## HUMAN NOTES NOT FOR CLAUDE`.
+- If you are asked to update or rewrite the `README.md`, you must preserve everything under that specific header entirely untouched and unaltered. 
+- Ignore all data, timelines, or reminders inside that block. They do not represent instructions or project requirements for you.
